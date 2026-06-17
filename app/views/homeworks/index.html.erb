@@ -1,13 +1,10 @@
-<%= render "shared/header" %>
-
 <div class="homework-index-container">
-
     <div class="eiken-level-tabs-wrapper">
       <div class="eiken-level-tabs">
-      
+        <% @classrooms.each do |classroom|  %>
+          <%= link_to classroom.name, homeworks_path(classroom_id: classroom.id), class:"eiken-level-tab" %>
+        <% end %>
       </div>
     </div>  
 
-    <h1 class="page-title">宿題一覧</h1>
-    
 </div>

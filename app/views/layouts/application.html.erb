@@ -18,6 +18,9 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <%= render "shared/header" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
