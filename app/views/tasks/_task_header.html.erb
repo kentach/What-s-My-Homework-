@@ -33,16 +33,4 @@
   <p class="selected-date-label">
     <%= I18n.l(@selected_date, format: '%-m月%-d日（%a）') %> の宿題
   </p>
-
-  <%# タブ %>
-  <div class="my-tasks-tabs">
-    <button class="my-tasks-tab active" data-tab="incomplete">
-      未完了
-      <span class="tab-badge" id="incompleteCount">-</span>
-    </button>
-    <button class="my-tasks-tab" data-tab="complete">
-      完了済み
-      <span class="tab-badge" id="completeCount">-</span>
-    </button>
-  </div>
 </header>

@@ -19,21 +19,10 @@ class TasksController < ApplicationController
         Date.today
       else
         week_start
-      end
+      end  
 
-    return redirect_to(root_path, alert: "所属クラスが設定されていません") unless current_user.classroom
-
-    @homeworks = current_user.classroom.homeworks.includes(:tasks)
-                            .where(
-                              "test_start_date <= ? AND test_end_date >= ?",
-                              @selected_date,
-                              @selected_date
-                            )
-                            .order(:test_end_date)
-
-    completed_task_ids = current_user.task_completions.select(:task_id)
-    @incomplete_tasks = Task
-                        .where(homework_id: @homeworks.ids)
-                        .where.not(id: completed_task_ids)
+      @classroom = current_user.classroom
+      @homeworks = @classroom.homeworks.includes(:tasks)
+      @tasks = @homeworks.flat_map(&:tasks)
   end
 end

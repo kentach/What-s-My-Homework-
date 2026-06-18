@@ -7,6 +7,5 @@ Rails.application.routes.draw do
 
   resources :homeworks, only: [:index, :show] 
   resources :tasks, only: [:index, :show]
-  
   resources :task_completions, only: [:create, :destroy]
 end

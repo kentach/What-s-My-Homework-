@@ -181,143 +181,145 @@ $green-l:  #34d399;
   &.active { display: block; }
 }
 
-// 宿題グループ
-.homework-group {
-  background: $white;
-  border-radius: 14px;
-  border: 1px solid $gray-200;
-  overflow: hidden;
-  margin-bottom: 14px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+.homework-show-body {
+  background: $gray-100;
+  padding: 14px;
+  min-height: 100vh;
 }
 
-.homework-group-header {
-  padding: 22px 16px;
-  border-bottom: 1px solid $gray-200;
-  position: relative;
-
-  // 左アクセントバー
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 4px;
-    background: linear-gradient(180deg, $accent, $accent-d);
-    border-radius: 4px 0 0 4px;
-  }
-
-  padding-left: 20px;
-}
-
-.homework-group-meta {
+// ── サマリー ───────────────────────────────
+.show-summary-row {
   display: flex;
-  align-items: center;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
-.homework-group-badge {
-  display: inline-flex;
-  align-items: center;
-  background: $accent;
-  color: $white;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-family: "SF Mono", "Fira Code", monospace;
+.show-summary-card {
+  flex: 1;
+  min-width: 90px;
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
 }
 
-.homework-group-period {
+.show-summary-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: $navy;
+}
+
+.show-summary-label {
   font-size: 11px;
-  font-weight: 600;
   color: $gray-400;
 }
 
-.homework-group-title {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 22px;
-  font-weight: 700;
-  color: $navy;
-  text-decoration: none;
-  transition: color 0.15s;
+.show-summary-msg {
+  width: 100%;
+  margin-top: 6px;
+  font-size: 12px;
+  color: $gray-600;
+}
 
-  &:hover { color: $accent; }
-  svg { flex-shrink: 0; color: $gray-400; }
+// ── タブ ────────────────────────────────
+.task-index-tabs {
+  display: flex;
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.task-index-tab {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  background: $white;
+  font-size: 13px;
+  font-weight: 600;
+  color: $gray-600;
+  cursor: pointer;
+  transition: 0.15s;
+
+  &.active {
+    color: $accent;
+    font-weight: 700;
+    border-bottom: 2px solid $accent;
+  }
 }
 
 
-.task-item {
-  display: block;
-  border-bottom: 1px solid $gray-200;
-  position: relative;
-  transition: background 0.15s;
+// ── リスト ────────────────────────────────
+.task-index-list {
+  margin-top: 4px;
+}
 
-  &:last-child { border-bottom: none; }
+.task-index-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 3px;
-    background: linear-gradient(180deg, $accent, $accent-d);
-    opacity: 0;
-    transition: opacity 0.2s;
+  h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: $navy;
   }
 
-  &:hover:not(.completed) {
-    background: $gray-50;
-    &::before { opacity: 1; }
-  }
-
-  &.completed {
-    background: #f0fdf8;
-
-    &::before {
-      background: linear-gradient(180deg, $green-l, $green);
-      opacity: 1;
-    }
-
-    .task-name {
-      color: $gray-400;
-      text-decoration: line-through;
-    }
+  .task-index-list-count {
+    font-size: 12px;
+    color: $gray-400;
   }
 }
 
-.task-check-wrap {
+.test-index-info {
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+
+  ul {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 12px;
+    color: $gray-600;
+  }
+}
+// ── タスク ────────────────────────────────
+.task-index-completed,
+.task-index-incomplete {
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  transition: 0.15s;
+}
+
+.task-index-check-wrap {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 13px 16px;
+  gap: 10px;
+  padding: 12px;
   cursor: pointer;
 }
 
-.task-name {
-  font-size: 18px;
-  font-weight: 600;
-  color: $navy;
-  line-height: 1.4;
-  flex: 1;
-  transition: color 0.2s;
-}
-
-// 空状態
-.my-tasks-empty {
-  text-align: center;
-  padding: 56px 24px;
-}
-
-.my-tasks-empty-icon {
-  font-size: 40px;
-  margin-bottom: 10px;
-}
-
-.my-tasks-empty-text {
+.task-index-name {
   font-size: 14px;
   font-weight: 600;
-  color: $gray-400;
+  color: $navy;
+  flex: 1;
+}
+
+.task-index-completed {
+  background: #f0fdf8;
+  border-color: #d1fae5;
+
+  .task-index-name {
+    color: $gray-400;
+    text-decoration: line-through;
+  }
 }

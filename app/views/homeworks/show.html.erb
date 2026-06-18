@@ -41,13 +41,13 @@
     </div>
 
     <%# タスク一覧 %>
-    <div class="task-list">
-      <div class="task-list-header">
+    <div class="homework-show-task-list">
+      <div class="homework-show-task-list-header">
         <h3>宿題リスト</h3>
-        <span class="task-list-count"><%= @tasks.size %> タスク</span>
+        <span class="homework-showtask-list-count"><%= @tasks.size %> タスク</span>
       </div>
 
-      <div class="test-info">
+      <div class="homework-show-test-info">
         <ul>
           <li>📌 授業前に宿題を必ずチェックしよう！</li>
           <li>✅ 宿題が終わったらチェックを入れよう！</li>
@@ -55,11 +55,11 @@
       </div>
 
       <% @tasks.each do |task| %>
-        <div id="task-<%= task.id %>" class="task-item">
-          <label class="task-check-wrap">
-            <div id="completed-button-for-task-<%= task.id %>">
+        <div id="task-<%= task.id %>" class="homework-show-task-item">
+          <label class="homework-show-task-check-wrap">
+            <div id="homework-show-completed-button-for-task-<%= task.id %>">
             </div>
-            <span class="task-name"><%= task.name %></span>
+            <span class="homework-show-task-name"><%= task.name %></span>
           </label>
         </div>
       <% end %>

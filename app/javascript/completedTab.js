@@ -1,36 +1,25 @@
 document.addEventListener("turbo:load", () => {
-  const tabs = document.querySelectorAll(".my-tasks-tab");
-  const panels = document.querySelectorAll(".tab-panel");
+  const tabs = document.querySelectorAll(".task-index-tab");
+  const tasks = document.querySelectorAll(".task-index-item");
 
-  tabs.forEach((tab) => {
+  tabs.forEach(tab => {
     tab.addEventListener("click", () => {
-      tabs.forEach((t) => t.classList.remove("active"));
-      panels.forEach((p) => p.classList.remove("active"));
 
+      tabs.forEach(t => t.classList.remove("active"));
       tab.classList.add("active");
 
-      const panel = document.getElementById(`panel-${tab.dataset.tab}`);
-      if (panel) panel.classList.add("active");
+      const type = tab.dataset.tab;
+
+      tasks.forEach(task => {
+        const status = task.dataset.status;
+
+        if (type === "all") {
+          task.style.display = "block";
+        } else {
+          task.style.display = (status === type) ? "block" : "none";
+        }
+      });
+
     });
   });
-
-  function updateCounts() {
-    const incomplete = document.querySelectorAll(
-      "#panel-incomplete .task-item:not(.completed)"
-    ).length;
-
-    const complete = document.querySelectorAll(
-      "#panel-complete .task-item.completed"
-    ).length;
-
-    const ib = document.getElementById("incompleteCount");
-    const cb = document.getElementById("completeCount");
-
-    if (ib) ib.textContent = incomplete;
-    if (cb) cb.textContent = complete;
-  }
-
-  updateCounts();
-
-  document.addEventListener("turbo:frame-render", updateCounts);
 });

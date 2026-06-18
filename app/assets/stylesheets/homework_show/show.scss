@@ -141,7 +141,7 @@ $green-l:   #34d399;
 }
 
 // ── タスクリスト ──────────────────────────
-.task-list {
+.homework-show-task-list {
   background: $white;
   border-radius: 16px;
   border: 1px solid $gray-200;
@@ -150,7 +150,7 @@ $green-l:   #34d399;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
-.task-list-header {
+.homework-show-task-list-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -165,7 +165,7 @@ $green-l:   #34d399;
   }
 }
 
-.task-list-count {
+.homework-show-task-list-count {
   font-size: 12px;
   font-weight: 600;
   color: $gray-400;
@@ -175,7 +175,7 @@ $green-l:   #34d399;
 }
 
 // ヒントバナー
-.test-info {
+.homework-show-test-info {
   background: #fff8f0;
   border-bottom: 1px solid #ffe4c0;
   padding: 10px 16px;
@@ -190,7 +190,7 @@ $green-l:   #34d399;
   }
 
   li {
-    font-size: 12px;
+    font-size: 15px;
     color: #b45309;
     font-weight: 500;
     line-height: 1.5;
@@ -198,7 +198,7 @@ $green-l:   #34d399;
 }
 
 // タスク行
-.task-item {
+.homework-show-task-item {
   display: block;
   border-bottom: 1px solid $gray-200;
   position: relative;
@@ -238,7 +238,7 @@ $green-l:   #34d399;
   }
 }
 
-.task-check-wrap {
+.homework-show-task-check-wrap {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -246,7 +246,7 @@ $green-l:   #34d399;
   cursor: pointer;
 }
 
-.task-name {
+.homework-show-task-name {
   font-size: 14px;
   font-weight: 600;
   color: $navy;
