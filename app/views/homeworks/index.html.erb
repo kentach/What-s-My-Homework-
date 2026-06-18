@@ -1,20 +1,16 @@
 <%= render "shared/header" %>
 <div class="homework-index-container">
   <!-- 検索バー -->
-  <div class="search-wrapper">
-    <form>
+    <div class="search-wrapper">
+    <%= search_form_for @q, url: homeworks_path, method: :get do |f| %>
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input
-        type="text"
-        placeholder="検索"
-        class="search-input"
-        id="searchInput"
-        autocomplete="off"
-      >
-      <button type="button" class="search-button">
-        検索
-      </button>
-    </form>
+      <%= f.search_field :title_or_content_cont,
+          placeholder: "Week ◯◯ or クラス名で検索",
+          class: "search-input",
+          id: "searchInput",
+          autocomplete: "off" %>
+      <%= f.submit "検索", class: "search-button" %>
+    <% end %>
   </div>
 
   <!-- 英検級スクロールバー -->
