@@ -30,5 +30,10 @@ class TasksController < ApplicationController
                               @selected_date
                             )
                             .order(:test_end_date)
+
+      completed_task_ids = current_user.task_completions.select(:task_id)
+      @incomplete_tasks = Task
+                          .where(homework_id: @homeworks.ids)
+                          .where.not(id: completed_task_ids)
   end
 end

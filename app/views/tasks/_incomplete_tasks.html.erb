@@ -1,4 +1,4 @@
-<div class="tab-panel active" id="panel-incomplete">
+  <div class="tab-panel active" id="panel-incomplete">
   <% incomplete_groups = @homeworks.select { |homework| homework.tasks.any? { |t| !current_user.completed?(t) } } %>
     <% if incomplete_groups.any? %>
       <% incomplete_groups.each do |homework| %>
@@ -6,7 +6,7 @@
         <div class="homework-group">
           <div class="homework-group-header">
             <div class="homework-group-meta">
-              <span class="homework-group-badge"><%= homework.classroom.name %></span>
+              <span class="homework-group-badge"><%= homework.classroom.eiken_level %></span>
               <span class="homework-group-period"><%= I18n.l(homework.test_end_date, format: '%m/%d') %>まで</span>
             </div>
             <%= link_to homework_path(homework), class: "homework-group-title" do %>
