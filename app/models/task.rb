@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
   validates :name, presence: true
-  validates :user_id, uniqueness: { scope: :task_id }
-  has_many :task_completions, dependent: :destroy
+
+  has_one_attached :pdf
+
   belongs_to :homework
+  has_many :task_completions, dependent: :destroy
 end

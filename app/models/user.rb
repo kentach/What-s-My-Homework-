@@ -3,7 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  belongs_to :classroom
   has_many :task_completions, dependent: :destroy
+  
 
   def completed?(task)
     task_completions.exists?(task: task)
@@ -15,7 +18,7 @@ class User < ApplicationRecord
   
     homework.tasks.count ==
       # 宿題に紐づいているtask(一個一個の宿題のこと)の数が
-      task_completions.where(task: homework.tasks).count
+    task_completions.where(task: homework.tasks).count
       # 完了したタスクの中にある、ユーザーが完了した宿題のtaskの数と等しいかどうか判定。
   end
 end
