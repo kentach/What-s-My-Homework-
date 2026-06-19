@@ -19,12 +19,7 @@ $green-l:   #34d399;
 
 // ── ヘッダー ──────────────────────────────
 .homework-show-header {
-  background: linear-gradient(
-    120deg,
-    $accent,
-    darken($accent, 5%),
-    $accent-d
-  );
+  background: #ff5757;
   position: sticky;
   top: 0;
   z-index: 10;

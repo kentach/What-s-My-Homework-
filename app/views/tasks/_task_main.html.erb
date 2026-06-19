@@ -1,22 +1,22 @@
 <div class="homework-show-body">
 
-  <% done = @tasks.count { |t| current_user.completed?(t) } %>
+  <% done = @tasks.count { |task| current_user.completed?(task) } %>
   <% total = @tasks.size %>
 
   <div class="show-summary-row">
 
-    <div class="show-summary-card">
+    <div class="show-summary-incomplete-card">
       <span class="show-summary-num" id="showDoneCount">
         <%= done %>
       </span>
-      <span class="show-summary-label">完了</span>
+      <span class="show-summary-label">未完了</span>
     </div>
 
-    <div class="show-summary-card">
+    <div class="show-summary-complete-card">
       <span class="show-summary-num" id="showTotalCount">
         <%= total %>
       </span>
-      <span class="show-summary-label">合計</span>
+      <span class="show-summary-label">完了</span>
     </div>
 
   </div>
@@ -43,6 +43,22 @@
       <button class="task-index-tab" data-tab="incomplete">未完了</button>
       <button class="task-index-tab" data-tab="completed">完了</button>
     </div>
+
+      <div>
+        <% @tasks.each do |task| %>
+          <div class="task-index-check-wrap">
+            <i class="fa-regular fa-square-check"></i>
+
+            <div class="task-index-main">
+              <div class="task-index-name">
+                <%= task.name %>
+              </div>
+              <%= link_to "詳細 >", task_path(task), class: "task-detail-link" %>
+            </div>
+
+          </div>
+        <% end %>
+      </div>
 
   </div>
 </div>
