@@ -5,7 +5,6 @@ class TasksController < ApplicationController
   def index
     set_date
     @classroom = current_user.classroom
-  
     @homeworks = @classroom.homeworks.includes(:tasks).where(
                             "test_start_date <= ? AND test_end_date >= ?",
                             @selected_date,

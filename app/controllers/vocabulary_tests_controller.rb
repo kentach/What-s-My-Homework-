@@ -5,7 +5,7 @@ class VocabularyTestsController < ApplicationController
     @scores = VocabularyTest.includes(:homework).order(test_date: :desc, created_at: :desc)
   end
 
-  def new 
+  def new
     VocabularyTest.new
   end
 
@@ -33,7 +33,6 @@ class VocabularyTestsController < ApplicationController
       flash.now[:danger] = "更新できませんでした。"
       render :edit, status: :unprocessable_entity
     end
-
   end
 
   def destroy
@@ -45,8 +44,8 @@ class VocabularyTestsController < ApplicationController
   def score_graph
     @scores = current_user.vocabulary_tests.includes(:homework).order(test_date: :asc)
     @score_data = [
-      { name: "単語テスト", data: @scores.map { |score| [score.homework.title, score.vocabulary_score, score.sentence_score] } },
-      { name: "文テスト", data: @scores.map { |score| [score.homework.title, score.sentence_score, score.sentence_score] } }
+      { name: "単語テスト", data: @scores.map { |score| [ score.homework.title, score.vocabulary_score, score.sentence_score ] } },
+      { name: "文テスト", data: @scores.map { |score| [ score.homework.title, score.sentence_score, score.sentence_score ] } }
     ]
   end
 

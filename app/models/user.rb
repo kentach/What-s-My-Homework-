@@ -23,7 +23,6 @@ class User < ApplicationRecord
 
   def completed_homework?(homework)
     return false if homework.tasks.empty?
-    
     homework.tasks.count == task_completions.where(task: homework.tasks).count
   end
 end

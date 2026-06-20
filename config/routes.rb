@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :homeworks, only: [ :index, :show ]
   resources :vocabulary_tests, only: [ :index, :new, :create, :edit, :update, :destroy ] do
-    collection do 
+    collection do
       get :score_graph
     end
   end
