@@ -1,9 +1,4 @@
 ja:
-  date:
-    formats:
-      default: "%Y年%-m月%-d日"
-      short:   "%-m月%-d日"
-      long:    "%Y年%-m月%-d日(%A)"
   helpers:
     static_pages:
 
@@ -15,6 +10,7 @@ ja:
     sessions:
       new: ログイン
 
+  views:
     homeworks:
       index:
         title: 宿題一覧
@@ -24,5 +20,7 @@ ja:
     tasks:
       index:
         title: マイタスク一覧
-      show:
-        title: マイタスク詳細
+
+    vocabulary_tests:
+      index:
+        title: 単語テスト記録
