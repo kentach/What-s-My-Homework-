@@ -3,55 +3,18 @@
 
 <div class="homework-index-container">
   <!-- 検索バー -->
-    <div class="search-wrapper">
-    <%= search_form_for @q, url: homeworks_path, method: :get do |f| %>
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <%= f.search_field :title_or_content_cont,
-          placeholder: "検索",
-          class: "search-input",
-          id: "searchInput",
-          autocomplete: "off" %>
-      <%= f.submit "検索", class: "search-button" %>
-    <% end %>
-  </div>
-
+  <%= render "homeworks/search_bar" %>
+  <!-- モーダル -->
+  <%= render "homeworks/modal" %>
   <!-- 英検級タブ -->
-  <div class="eiken-level-tabs-wrapper">
-    <div class="eiken-level-tabs">
-      <% @classrooms.each do |classroom|  %>
-        <%= link_to classroom.eiken_level, 
-            homeworks_path(classroom_id: classroom.id), 
-            class:"eiken-level-tab #{'active' if classroom == @selected_classroom}" %>
-      <% end %>
-    </div>
-  </div>  
+  <%= render "homeworks/eiken_tab" %>
 
   <h1 class="homework-page-title">宿題一覧</h1>
-  <% @homeworks.each do |homework| %>
-      <%= link_to homework_path(homework), class: "homework-card" do %>
-        <div>
-          <div class="homework-card-top">
-            <span class="badge grade"><%= homework.classroom&.name %></span>
-          </div>
-          <h2 class="homework-title">
-            <%= homework.title %>
-            <% if current_user.completed_homework?(homework) %>
-              <span class="badge completed">
-                <i class="fa-solid fa-flag-checkered"></i> Done
-              </span>
-            <% end %>     
-          </h2>
-          <div class="homework-period">
-            <i class="fa-solid fa-calendar-check"></i>
-            <%= homework.test_start_date.strftime("%-m月%-d日") %> 〜 <%= homework.test_end_date.strftime("%-m月%-d日") %>
-          </div>
-        </div>
-      <% end %>
-  <% end %>
+    <!-- 宿題リスト -->
+    <%= render "homeworks/homework_lists" %>
 
   <div class="pagination-wrapper">
     <%= paginate @homeworks %>
   </div>
-
 </div>
 <%= render 'shared/navigation_bar' %>
