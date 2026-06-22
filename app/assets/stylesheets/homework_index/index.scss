@@ -176,6 +176,12 @@
   padding-left: 10px;
 }
 
+.fa-circle-question {
+  font-size: 28px;
+  color: gray;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
 
   .homework-index-container {
@@ -204,7 +210,7 @@
 
   .search-input {
     flex: 1;
-    min-width: 280px;
+    min-width: 240px;
     height: 42px;
     font-size: 15px;
   }

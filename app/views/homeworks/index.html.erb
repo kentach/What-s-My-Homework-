@@ -4,27 +4,53 @@
 <div class="homework-index-container">
   <!-- 検索バー -->
     <div class="search-wrapper">
-    <%= search_form_for @q, url: homeworks_path, method: :get do |f| %>
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <%= f.search_field :title_or_content_cont,
-          placeholder: "検索",
-          class: "search-input",
-          id: "searchInput",
-          autocomplete: "off" %>
-      <%= f.submit "検索", class: "search-button" %>
-    <% end %>
-  </div>
-
-  <!-- 英検級タブ -->
-  <div class="eiken-level-tabs-wrapper">
-    <div class="eiken-level-tabs">
-      <% @classrooms.each do |classroom|  %>
-        <%= link_to classroom.name, 
-            homeworks_path(classroom_id: classroom.id), 
-            class:"eiken-level-tab #{'active' if classroom == @selected_classroom}" %>
+      <%= search_form_for @q, url: homeworks_path, method: :get do |f| %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <%= f.search_field :title_or_content_cont,
+            placeholder: "検索",
+            class: "search-input",
+            id: "searchInput",
+            autocomplete: "off" %>
+        <%= f.submit "検索", class: "search-button" %>
       <% end %>
+      <i id="search-question" class="fa-solid fa-circle-question"></i>
     </div>
-  </div>  
+
+    <!-- モーダル -->
+    <div class="modal-background" id="modal">
+      <div class="modal-inner">
+        <i id="modal-close" class="fa-solid fa-circle-xmark"></i>
+        <div class="search-tip">
+          <h3>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            検索のコツ
+          </h3>
+          <p>💡 数字は「半角」で入力！</p>
+          <p>💡「全角」「漢数字」は検索で引っかかりません。</p>
+
+          <div class="search-tip-item">
+            <strong>☑️ クラス名で探す</strong>
+            <p>例：小学生高学年5級、3級、準2級</p>
+          </div>
+
+          <div class="search-tip-item">
+            <strong>☑️ Weekで探す</strong>
+            <p>例：準1級 Week10、Week24</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 英検級タブ -->
+    <div class="eiken-level-tabs-wrapper">
+      <div class="eiken-level-tabs">
+        <% @classrooms.each do |classroom|  %>
+          <%= link_to classroom.name, 
+              homeworks_path(classroom_id: classroom.id), 
+              class:"eiken-level-tab #{'active' if classroom == @selected_classroom}" %>
+        <% end %>
+      </div>
+    </div>  
 
   <h1 class="homework-page-title">宿題一覧</h1>
   <% @homeworks.each do |homework| %>
