@@ -42,7 +42,7 @@ class VocabularyTestsController < ApplicationController
   end
 
   def score_graph
-    @scores = current_user.vocabulary_tests.includes(:homework).order(test_date: :asc)
+    @scores = current_user.vocabulary_tests.includes(:homework).order(homework_id: :asc)
     @score_data = [
       { name: "単語テスト", data: @scores.map { |score| [ score.homework.title, score.vocabulary_score, score.sentence_score ] } },
       { name: "文テスト", data: @scores.map { |score| [ score.homework.title, score.sentence_score, score.sentence_score ] } }
