@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   resources :tasks, only: [ :index, :show ] do
     resources :task_completions, only: [ :create, :destroy ] # turboはネストでルーティングを作ること
   end
+
+  resources :notifications
 end
