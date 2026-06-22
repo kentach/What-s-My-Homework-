@@ -16,15 +16,15 @@ class Homework < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     %w[
       title
-      content
-      created_at
+      status
+      test_start_date
+      test_end_date
       updated_at
-      classroom_id
     ]
   end
 
   # 関連も検索したい場合
   def self.ransackable_associations(auth_object = nil)
-    %w[classroom]
+    %w[classroom user]
   end
 end
