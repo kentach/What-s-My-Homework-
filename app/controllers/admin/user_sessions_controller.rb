@@ -1,7 +1,7 @@
 class Admin::UserSessionsController < Admin::BaseController
   skip_before_action :authenticate_user!
   skip_before_action :authenticate_admin!
-  layout 'layouts/admin_login'
+  layout "layouts/admin_login"
 
   def destroy
     reset_session

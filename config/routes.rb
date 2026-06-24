@@ -3,7 +3,6 @@ Rails.application.routes.draw do
     resources :homeworks, except: [ :show ]
     resources :classrooms, except: [ :show ]
     resources :notifications, except: [ :show ]
-    
 
     root "dashboard#index"
     get "/homeworks/draft", to: "homeworks#draft", as: :draft_homeworks
@@ -11,11 +10,10 @@ Rails.application.routes.draw do
     get "/notifications/draft", to: "notifications#draft", as: :draft_notifications
     get "/notifications/published", to: "notifications#published", as: :published_notifications
     resources :users
-    
     # 管理画面ログイン
-    get 'login' => 'user_sessions#new', :as => :login
-    post 'login' => "user_sessions#create"
-    get  'logout' => 'user_sessions#destroy', :as => :logout
+    get "login" => "user_sessions#new", :as => :login
+    post "login" => "user_sessions#create"
+    get  "logout" => "user_sessions#destroy", :as => :logout
   end
 
   devise_for :users, controllers: {
