@@ -23,7 +23,7 @@
 
       <div class="form-group">
         <%= f.label :classroom_id, "所属クラス", class: "form-label" %>
-        <%= f.collection_select :classroom_id, @classrooms, :id, :eiken_level, { prompt: "選択してください" }, class: "form-select" %>
+        <%= f.collection_select :classroom_id, @classrooms, :id, :name, { prompt: "選択してください" }, class: "form-select" %>
       </div>
 
       <!-- パスワード -->
