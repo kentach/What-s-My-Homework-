@@ -105,11 +105,11 @@
                       </td>
 
                       <td>
-                        <% if notification.created.present? %>
-                          <%= notification.created.strftime("%Y/%m/%d %H:%M") %>
+                        <% if notification.created_at.present? %>
+                          <%= notification.created_at.strftime("%Y/%m/%d %H:%M") %>
                           <br>
                           <small class="text-muted">
-                            （<%= %w(日 月 火 水 木 金 土)[notification.created.wday] %>）
+                            （<%= %w(日 月 火 水 木 金 土)[notification.created_at.wday] %>）
                           </small>
                         <% else %>
                           <span class="text-muted">—</span>
