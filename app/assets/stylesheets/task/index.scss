@@ -19,6 +19,13 @@ $green-l: #34d399;
   margin-left: 12px;
   border-radius: 999px;
   align-items: center;
+
+  // 小さい画面では余白を詰める
+  @media (max-width: 390px) {
+    padding: 4px 8px;
+    margin-left: 6px;
+    font-size: 11px;
+  }
 }
 
 .badge.completed i {
@@ -26,38 +33,50 @@ $green-l: #34d399;
 }
 
 .test-period-banner {
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 14px;
-    border-radius: 12px;
-    margin: 16px 0px;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: break-word;
+
+  // セーフエリア対応
+  padding-left: max(14px, env(safe-area-inset-left));
+  padding-right: max(14px, env(safe-area-inset-right));
 }
+
 // ── ページ ────────────────────────────────
 .my-tasks {
   background: $gray-100;
   min-height: 100vh;
-  padding-bottom: 96px;
+
+  // ホームバー対応
+  padding-bottom: calc(96px + env(safe-area-inset-bottom));
 }
 
 // ── ヘッダー ──────────────────────────────
-
 .selected-date-label {
-  color:$white;
+  color: $white;
   padding: 0;
   margin: 0;
+  font-size: 14px;
+
+  @media (max-width: 390px) {
+    font-size: 13px;
+  }
 }
 
 .my-tasks-header {
   background: $navy;
-  padding: 20px 30px;
-  position: sticky;
-  top: 0;
+  padding: 12px;
   z-index: 10;
 }
 
 .my-tasks-header-inner {
-  margin-bottom: 16px;
+  margin-bottom: 3px;
 }
 
 .my-tasks-title {
@@ -66,19 +85,27 @@ $green-l: #34d399;
   color: $white;
   letter-spacing: -0.03em;
   margin-bottom: 2px;
+
+  @media (max-width: 390px) {
+    font-size: 19px;
+  }
 }
 
 .my-tasks-subtitle {
   font-size: 12px;
+  margin: 0;
+  padding: 0;
   font-weight: 600;
   color: rgba($white, 0.5);
 }
+
+
 
 // 週ナビゲーター
 .week-nav {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   margin-bottom: 6px;
 }
 
@@ -86,23 +113,30 @@ $green-l: #34d399;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 36px; // タップ領域を確保（最小44px推奨だがUIバランス優先）
+  height: 36px;
   border-radius: 8px;
   background: rgba($white, 0.1);
   color: rgba($white, 0.7);
   flex-shrink: 0;
   transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
 
-  &:hover {
-    background: rgba($white, 0.2);
+  &:hover { background: rgba($white, 0.2); }
+
+  @media (hover: none) {
+    &:active { background: rgba($white, 0.2); }
   }
 }
 
 .week-days {
   display: flex;
   flex: 1;
-  gap: 4px;
+  gap: 3px;
+
+  @media (max-width: 320px) {
+    gap: 1px;
+  }
 }
 
 .week-day-cell {
@@ -114,43 +148,43 @@ $green-l: #34d399;
   padding: 6px 0;
   border-radius: 8px;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  min-width: 0; // 縮みすぎ防止
 
   &.selected {
     background: #fabdbd;
-
     .week-day-name,
-    .week-day-num {
-      color: $white;
-    }
-    .week-day-num {
-      font-weight: 800;
-    }
+    .week-day-num { color: $white; }
+    .week-day-num { font-weight: 800; }
   }
 
   &.today {
     background: $accent;
-
     .week-day-name,
-    .week-day-num {
-      color: $white;
-    }
-    .week-day-num {
-      font-weight: 800;
-    }
+    .week-day-num { color: $white; }
+    .week-day-num { font-weight: 800; }
   }
 }
 
 .week-day-name {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
-  color: #fff;
-  letter-spacing: 0.02em;
+  color: $white;
+  letter-spacing: 0.01em;
+
+  @media (max-width: 390px) {
+    font-size: 11px;
+  }
 }
 
 .week-day-num {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
-  color: #fff;
+  color: $white;
+
+  @media (max-width: 390px) {
+    font-size: 13px;
+  }
 }
 
 .week-range-label {
@@ -174,23 +208,31 @@ $green-l: #34d399;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  padding: 12px 0;
-  background: #fff;
+  gap: 6px;
+  padding: 12px 4px;
+  background: $white;
   border: none;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: #333;
   cursor: pointer;
   border-bottom: 3px solid transparent;
-  transition:
-    color 0.15s,
-    border-color 0.15s;
+  transition: color 0.15s, border-color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+
+  // タップ領域を確保
+  min-height: 44px;
 
   &.active {
-    color: #ff5757;
+    color: $accent;
     border-bottom-color: $accent;
-    font-size: 16px;
+    font-size: 15px;
+  }
+
+  @media (max-width: 390px) {
+    font-size: 13px;
+    gap: 4px;
+    &.active { font-size: 14px; }
   }
 }
 
@@ -206,6 +248,7 @@ $green-l: #34d399;
   font-size: 11px;
   font-weight: 700;
   color: rgba($white, 0.7);
+  flex-shrink: 0;
 
   .my-tasks-tab.active & {
     background: $accent;
@@ -216,25 +259,31 @@ $green-l: #34d399;
 // ── ボディ ───────────────────────────────
 .my-tasks-body {
   padding: 16px 16px 0;
+
+  @media (max-width: 390px) {
+    padding: 12px 12px 0;
+  }
 }
 
 .tab-panel {
   display: none;
-  &.active {
-    display: block;
-  }
+  &.active { display: block; }
 }
 
 .homework-show-body {
   background: $gray-100;
   padding: 14px;
   width: 100%;
-  margin: 10px auto;
+  margin: 0 auto;
   max-width: 1000px;
   min-height: 100vh;
+
+  @media (max-width: 390px) {
+    padding: 10px;
+  }
 }
 
-// ── サマリー ───────────────────────────────
+// ── サマリー ─────────────────────────────
 .show-summary-row {
   display: flex;
   gap: 8px;
@@ -244,7 +293,7 @@ $green-l: #34d399;
 
 .show-summary-complete-card {
   flex: 1;
-  min-width: 90px;
+  min-width: 80px;
   background: #c4f3bc;
   border: 1px solid $green;
   border-radius: 12px;
@@ -254,7 +303,7 @@ $green-l: #34d399;
 
 .show-summary-incomplete-card {
   flex: 1;
-  min-width: 90px;
+  min-width: 80px;
   background: #fbcfcf;
   border: 1px solid $accent;
   border-radius: 12px;
@@ -266,6 +315,10 @@ $green-l: #34d399;
   font-size: 22px;
   font-weight: 800;
   color: $navy;
+
+  @media (max-width: 390px) {
+    font-size: 20px;
+  }
 }
 
 .show-summary-label {
@@ -278,6 +331,7 @@ $green-l: #34d399;
   margin-top: 6px;
   font-size: 12px;
   color: $gray-600;
+  line-height: 1.5;
 }
 
 // ── タブ ────────────────────────────────
@@ -301,11 +355,19 @@ $green-l: #34d399;
   cursor: pointer;
   transition: 0.15s;
   border-radius: 12px;
+  min-height: 44px; // タップ領域確保
+  -webkit-tap-highlight-color: transparent;
 
   &.active {
     background: $accent;
     color: $white;
     font-weight: 700;
+  }
+
+  @media (hover: none) {
+    &:active:not(.active) {
+      background: $gray-100;
+    }
   }
 }
 
@@ -313,25 +375,32 @@ $green-l: #34d399;
 .task-index-list-header {
   display: flex;
   justify-content: space-between;
-  height: 32px;
   align-items: center;
+  height: auto;
   margin: 16px 0;
+  gap: 8px;
 
   h3 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     color: $navy;
-    margin-top: 8px;
+    margin: 0;
+
+    @media (max-width: 390px) {
+      font-size: 18px;
+    }
   }
 
   .task-index-list-count {
-    font-size: 16px;
+    font-size: 14px;
     color: $gray-600;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 }
 
 .test-index-info {
-  background: #fff8f0;;
+  background: #fff8f0;
   border: 1px solid #e07b00;
   border-radius: 10px;
   padding: 10px 12px;
@@ -340,30 +409,46 @@ $green-l: #34d399;
   ul {
     margin: 0;
     padding-left: 16px;
-    font-size: 18px;
+    font-size: 15px; // 18pxは大きすぎるためスマホ向けに調整
     color: #b35c00;
+    line-height: 1.6;
+
+    @media (max-width: 390px) {
+      font-size: 13px;
+    }
   }
 
   li {
-    list-style: none
+    list-style: none;
   }
 }
+
 // ── タスク ────────────────────────────────
 .task-index-check-wrap {
   display: flex;
   align-items: center;
   gap: 12px;
-
-  background: #fff;
+  background: $white;
   border-radius: 12px;
-  padding: 10px 14px;
-  margin-bottom: 16px;
-
+  padding: 12px 14px;
+  margin-bottom: 12px;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.06),
     0 4px 12px rgba(0, 0, 0, 0.04);
-
   border: 1px solid #e9eaec;
+
+  // タップ時のフィードバック
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s;
+
+  @media (hover: none) {
+    &:active { background: $gray-50; }
+  }
+
+  @media (max-width: 390px) {
+    padding: 10px 12px;
+    gap: 10px;
+  }
 }
 
 .task-index-main {
@@ -371,18 +456,33 @@ $green-l: #34d399;
   justify-content: space-between;
   align-items: center;
   flex: 1;
+  min-width: 0; // テキスト溢れ防止
+  gap: 8px;
 }
 
 .task-index-name {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
   color: $navy;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  flex: 1;
+  min-width: 0;
+
+  @media (max-width: 390px) {
+    font-size: 14px;
+  }
 }
 
 .task-detail-link {
   font-size: 13px;
   font-weight: 500;
   color: $gray-600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .task-index-completed {
