@@ -1,6 +1,7 @@
 class Admin::HomeworksController < Admin::BaseController
   layout "layouts/admin"
   before_action :set_homework, only: [ :edit, :update, :destroy ]
+  before_action :set_classrooms, only: [ :new, :edit, :create, :update ]
 
   def index
     @q = Homework.ransack(params[:q])
@@ -10,12 +11,14 @@ class Admin::HomeworksController < Admin::BaseController
                    .per(20)
   end
 
-  def new
+  def new # formで表示する内容
     @homework = Homework.new
+    @homework.tasks.build
   end
 
   def create
-    @homework = current_user.homeworks.build(homework_params)
+    @homework = Homework.new(homework_params) # relationが存在しないので、この書き方
+    @homework.user_id = current_user.id
     if @homework.save
       redirect_to admin_root_path, notice: "宿題を作成しました"
     else
@@ -60,6 +63,10 @@ class Admin::HomeworksController < Admin::BaseController
 
   def set_homework
     @homework = Homework.find(params[:id])
+  end
+
+  def set_classrooms
+    @classrooms = Classroom.all
   end
 
   def homework_params
